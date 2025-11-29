@@ -8,8 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
-import kotlinx.android.synthetic.main.activity_task.*
+import com.example.todoapp.databinding.ActivityTaskBinding // Importar a classe de binding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -21,6 +20,8 @@ const val DB_NAME = "todo.db"
 
 class TaskActivity : AppCompatActivity(), View.OnClickListener {
 
+    private lateinit var binding: ActivityTaskBinding // Variável de binding
+
     lateinit var myCalendar: Calendar
 
     lateinit var dateSetListener: DatePickerDialog.OnDateSetListener
@@ -29,33 +30,31 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
     var finalDate = 0L
     var finalTime = 0L
 
-
-    private val labels = arrayListOf("Personal", "Business", "Insurance", "Shopping", "Banking")
-
-
     val db by lazy {
         AppDatabase.getDatabase(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_task)
+        binding = ActivityTaskBinding.inflate(layoutInflater) // Inflar usando View Binding
+        setContentView(binding.root)
 
-        dateEdt.setOnClickListener(this)
-        timeEdt.setOnClickListener(this)
-        saveBtn.setOnClickListener(this)
-
+        binding.dateEdt.setOnClickListener(this)
+        binding.timeEdt.setOnClickListener(this)
+        binding.saveBtn.setOnClickListener(this)
 
         setUpSpinner()
     }
 
     private fun setUpSpinner() {
+        val labels = resources.getStringArray(R.array.task_categories).toMutableList()
+
         val adapter =
             ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, labels)
 
         labels.sort()
 
-        spinnerCategory.adapter = adapter
+        binding.spinnerCategory.adapter = adapter
     }
 
     override fun onClick(v: View) {
@@ -74,9 +73,9 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun saveTodo() {
-        val category = spinnerCategory.selectedItem.toString()
-        val title = titleInpLay.editText?.text.toString()
-        val description = taskInpLay.editText?.text.toString()
+        val category = binding.spinnerCategory.selectedItem.toString()
+        val title = binding.titleInpLay.editText?.text.toString()
+        val description = binding.taskInpLay.editText?.text.toString()
 
         GlobalScope.launch(Dispatchers.Main) {
             val id = withContext(Dispatchers.IO) {
@@ -107,17 +106,16 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
 
         val timePickerDialog = TimePickerDialog(
             this, timeSetListener, myCalendar.get(Calendar.HOUR_OF_DAY),
-            myCalendar.get(Calendar.MINUTE), false
+            myCalendar.get(Calendar.MINUTE), true // true para formato 24h
         )
         timePickerDialog.show()
     }
 
     private fun updateTime() {
-        //Mon, 5 Jan 2020
-        val myformat = "h:mm a"
-        val sdf = SimpleDateFormat(myformat)
+        val myformat = "HH:mm" // Formato 24h
+        val sdf = SimpleDateFormat(myformat, Locale("pt", "BR"))
         finalTime = myCalendar.time.time
-        timeEdt.setText(sdf.format(myCalendar.time))
+        binding.timeEdt.setText(sdf.format(myCalendar.time))
 
     }
 
@@ -142,13 +140,12 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun updateDate() {
-        //Mon, 5 Jan 2020
-        val myformat = "EEE, d MMM yyyy"
-        val sdf = SimpleDateFormat(myformat)
+        val myformat = "dd/MM/yyyy" // Formato pt-BR
+        val sdf = SimpleDateFormat(myformat, Locale("pt", "BR"))
         finalDate = myCalendar.time.time
-        dateEdt.setText(sdf.format(myCalendar.time))
+        binding.dateEdt.setText(sdf.format(myCalendar.time))
 
-        timeInptLay.visibility = View.VISIBLE
+        binding.timeInptLay.visibility = View.VISIBLE
 
     }
 

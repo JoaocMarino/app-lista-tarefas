@@ -11,8 +11,13 @@ interface TodoDao {
     @Insert()
     suspend fun insertTask(todoModel: TodoModel):Long
 
+    // Busca tarefas pendentes
     @Query("Select * from TodoModel where isFinished == 0")
     fun getTask():LiveData<List<TodoModel>>
+
+    // Busca tarefas concluídas
+    @Query("Select * from TodoModel where isFinished == 1")
+    fun getFinishedTask():LiveData<List<TodoModel>>
 
     @Query("Update TodoModel Set isFinished = 1 where id=:uid")
     fun finishTask(uid:Long)

@@ -9,13 +9,13 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         app:titleTextColor="@android:color/white"
-        app:title="Todo"
+        app:title="@string/toolbar_title"
         android:background="?attr/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@+id/toolbar"
+        android:layout_below="@id/toolbar"
         android:id="@+id/todoRv"
         tools:itemCount="3"
         android:padding="8dp"

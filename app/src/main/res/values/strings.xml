@@ -1,3 +1,33 @@
 <resources>
-    <string name="app_name">TodoApp</string>
+    <string name="app_name">Lista de Tarefas</string>
+    <string name="toolbar_title">Tarefas</string>
+    <string name="date_label">Data</string>
+    <string name="time_label">Hora</string>
+
+    <!-- Tela de Nova Tarefa -->
+    <string name="new_task_title">Nova Tarefa</string>
+    <string name="task_title_label">Título da Tarefa</string>
+    <string name="task_title_hint">Digite o título da tarefa</string>
+    <string name="task_description_label">O que precisa ser feito?</string>
+    <string name="task_description_hint">Digite os detalhes da tarefa</string>
+    <string name="reminder_label">Definir lembrete</string>
+    <string name="date_hint">Definir Data</string>
+    <string name="time_hint">Definir Hora</string>
+    <string name="save_task_button">Salvar Tarefa</string>
+
+    <!-- Menu Principal -->
+    <string name="menu_history">Histórico</string>
+    <string name="menu_search">Pesquisar</string>
+
+    <!-- Categorias de Tarefas -->
+    <string-array name="task_categories">
+        <item>Pessoal</item>
+        <item>Trabalho</item>
+        <item>Seguros</item>
+        <item>Compras</item>
+        <item>Banco</item>
+    </string-array>
+
+    <!-- Tela de Histórico -->
+    <string name="history_title">Tarefas Concluídas</string>
 </resources>

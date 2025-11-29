@@ -15,7 +15,7 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarAddTask"
-            app:title="New Task"
+            app:title="@string/new_task_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/colorPrimary"
@@ -29,7 +29,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="4dp"
-        android:text="Task Title"
+        android:text="@string/task_title_label"
         android:textColor="@color/colorAccent"
         android:textSize="16sp" />
 
@@ -46,7 +46,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Task title"
+            android:hint="@string/task_title_hint"
             android:paddingStart="8dp"
             android:inputType="textCapWords"
             android:paddingEnd="8dp"
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="4dp"
-        android:text="What is to be done?"
+        android:text="@string/task_description_label"
         android:textColor="@color/colorAccent"
         android:textSize="16sp" />
 
@@ -75,7 +75,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter your Task"
+            android:hint="@string/task_description_hint"
             android:lines="3"
             android:gravity="start"
             android:paddingStart="8dp"
@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="4dp"
-        android:text="Set reminder date and time"
+        android:text="@string/reminder_label"
         android:textColor="@color/colorAccent"
         android:textSize="16sp" />
 
@@ -104,7 +104,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Set Date"
+            android:hint="@string/date_hint"
             android:clickable="true"
             android:id="@+id/dateEdt"
             android:cursorVisible="false"
@@ -131,7 +131,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Set Time"
+            android:hint="@string/time_hint"
             android:clickable="true"
             android:id="@+id/timeEdt"
             android:cursorVisible="false"
@@ -170,7 +170,7 @@
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:text="Save Task"
+        android:text="@string/save_task_button"
         android:id="@+id/saveBtn"
         app:backgroundTint="@color/colorAccent"
         android:layout_marginTop="32dp"
